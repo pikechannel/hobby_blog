@@ -1,0 +1,27 @@
+version: "3"
+services:
+  front:
+    container_name: hobby_blog
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5173:5173
+      - '24678:24678'
+    volumes:
+      - .:/hobby_blog
+    working_dir: /hobby_blog
+    tty: true
+    stdin_open: true
+    environment:
+      - HOST=0.0.0.0
+      - port=80
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - app
+    restart: always
+    command: ["sleep", "infinity"]
+
+networks:
+  app:
+    driver: bridge
