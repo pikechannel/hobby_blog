@@ -1,19 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-
-interface Metadata {
-	title: string;
-	date: string;
-	category: string;
-	description: string;
-	thumbnail: string;
-}
-
-interface ArticleInfo {
-	slug: string;
-	metadata: Metadata;
-}
+import type { ArticleInfo, Metadata } from '$lib/types';
 
 export function getArticles(): ArticleInfo[] {
 	const articlesDirectory = path.resolve(process.cwd(), 'articles');
