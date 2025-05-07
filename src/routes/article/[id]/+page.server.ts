@@ -10,35 +10,38 @@ import { getArticles } from '$lib/getArticles';
 
 const readFile = promisify(fs.readFile);
 
-export const load: PageServerLoad = async ({ params }) => {
-  const { id } = params;
-  const filePath = path.resolve('articles', `${id}.md`);
-  const slug = path.basename(filePath, '.md');
-
-  let fileContent: string;
+export const load = (async ({ params }) => {
   try {
-    fileContent = await readFile(filePath, 'utf-8');
+    const { id } = params;
+    if (!id) {
+      throw error(404, 'Article ID is required');
+    }
+
+    const filePath = path.resolve('articles', `${id}.md`);
+    const slug = path.basename(filePath, '.md');
+
+    const fileContent = await readFile(filePath, 'utf-8');
+    const parsedMatter = matter(fileContent);
+    const mdParser = new markdown();
+    const htmlContent = mdParser.render(parsedMatter.content);
+
+    const metadata = {
+      ...parsedMatter.data,
+      date: parsedMatter.data.date instanceof Date
+        ? format(parsedMatter.data.date, 'yyyy-MM-dd')
+        : parsedMatter.data.date
+    };
+
+    const articles = getArticles();
+
+    return {
+      slug,
+      articles,
+      htmlContent,
+      metadata
+    };
   } catch (err) {
-    console.error('Error reading file:', err);
-    throw error(404, 'Not found');
+    console.error('Error loading article:', err);
+    throw error(404, 'Article not found');
   }
-
-  // gray-matterを使ってMarkdownとFront Matterを分離
-  const parsedMatter = matter(fileContent);
-  const mdParser = new markdown();
-  const htmlContent = mdParser.render(parsedMatter.content);
-
-  const metadata = parsedMatter.data;
-  if (metadata.date instanceof Date) {
-    metadata.date = format(metadata.date, 'yyyy-MM-dd');
-  }
-
-  const articles = getArticles();
-  return {
-    slug,
-    articles,
-    params,
-    htmlContent,
-    metadata
-  };
-}
+}) satisfies PageServerLoad;
