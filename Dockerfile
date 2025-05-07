@@ -8,5 +8,3 @@ USER deno
 WORKDIR /hobby_blog
 
 ENV PATH="/root/.deno/bin:$PATH"
-
-ADD source dest
