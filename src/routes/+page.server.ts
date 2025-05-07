@@ -3,6 +3,7 @@ import path from 'path';
 import { promisify } from 'util';
 import type { PageServerLoad } from './$types';
 import { getArticles } from '$lib/getArticles';
+import type { TopPageData } from '$lib/types';
 
 const readFile = promisify(fs.readFile);
 
@@ -23,7 +24,7 @@ interface PageData {
   content: ArticleInfo[];
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (): Promise<TopPageData> => {
   const articles = getArticles();
   return { content: articles };
 };

@@ -1,16 +1,7 @@
 <script lang="ts">
-    interface Metadata {
-        title: string;
-        description: string;
-        thumbnail: string;
-    }
+	import type { Article } from '$lib/types';
 
-    interface Article {
-        slug: string;
-        metadata: Metadata;
-    }
-
-    export let article: Article;
+	export let article: Article;
 </script>
 
 <a 
