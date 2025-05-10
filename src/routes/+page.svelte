@@ -1,7 +1,7 @@
 <script lang="ts">
     import Card from "$lib/components/top/Card.svelte";
     import Calendar from "$lib/components/top/Calendar.svelte";
-
+    import Profile from "$lib/components/top/Profile.svelte";
     interface Metadata {
         title: string;
         date: string;
@@ -35,15 +35,18 @@
 </script>
 
 <section class="w-full">
-    <img
-        src="/img/header_logo.png"
-        alt="Blog Header"
-        srcset="/img/header_logo.webp"
-        class="m-auto"
-    />
+    <picture>
+        <source srcset="/img/header_logo.webp" type="image/webp">
+        <img
+            src="/img/header_logo.png"
+            alt="Blog Header"
+            loading="lazy"
+            class="m-auto"
+        />
+    </picture>
 </section>
 
-<div class="flex mt-5">
+<div class="flex mt-5 p-5">
     <main class="w-3/4">
         <section>
             <section class="px-6">
@@ -69,6 +72,7 @@
     </main>
 
     <aside class="w-1/4">
+        <Profile />
         <Calendar />
     </aside>
 </div>
