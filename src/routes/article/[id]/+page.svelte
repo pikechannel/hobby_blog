@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { PageData } from '$lib/types';
+	import ArticlesPageTop from '$lib/components/articles/PageTop.svelte';
+	import { PUBLIC_TITLE } from '$lib/constants';
 
 	export let data: PageData;
 
@@ -7,10 +9,11 @@
 	$: currentIndex = data.articles.findIndex(article => article.slug === data.slug);
 	$: nextArticle = currentIndex < data.articles.length - 1 ? data.articles[currentIndex + 1]?.slug : null;
 	$: previousArticle = currentIndex > 0 ? data.articles[currentIndex - 1]?.slug : null;
+	
 </script>
 
 <svelte:head>
-	<title>{data.metadata.title} | テストブログ</title>
+	<title>{data.metadata.title} | {PUBLIC_TITLE}</title>
 	<meta name="description" content={data.metadata.description} />
 	<meta property="og:title" content={data.metadata.title} />
 	<meta property="og:description" content={data.metadata.description} />
@@ -69,11 +72,7 @@
 	</div>
 </div>
 
-<div class="fixed bottom-[30px] right-[30px] border-1 rounded-full">
-	<a href="#" class="w-10 h-10 block text-center">
-		<i class="fa-solid fa-arrow-up align-[-webkit-baseline-middle]"></i>
-	</a>
-</div>
+<ArticlesPageTop />
 
 <style>
 	:global(#article > h2) {
