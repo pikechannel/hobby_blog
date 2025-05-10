@@ -18,7 +18,7 @@ const config = {
 				'default-src': ["'self'"],
 				'script-src': [
 					"'self'",
-					"'nonce-%nonce%'",
+					"nonce-%nonce%",
 					'https://cdn.jsdelivr.net',
 					'https://cdnjs.cloudflare.com'
 				],
@@ -31,15 +31,14 @@ const config = {
 				],
 				'img-src': ["'self'", 'data:', 'https:'],
 				'connect-src': ["'self'"],
-				'font-src': ["'self'", 'https://fonts.gstatic.com'],
+				'font-src': ["'self'", 'https://fonts.gstatic.com', 'https://cdnjs.cloudflare.com', 'data:'],
 				'object-src': ["'none'"],
 				'media-src': ["'self'"],
 				'frame-src': ["'none'"],
 				'base-uri': ["'self'"],
 				'form-action': ["'self'"],
 				'frame-ancestors': ["'none'"],
-				'upgrade-insecure-requests': [],
-				'block-all-mixed-content': []
+				'upgrade-insecure-requests': true,
 			}
 		}
 	}
