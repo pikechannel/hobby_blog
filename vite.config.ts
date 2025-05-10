@@ -6,5 +6,6 @@ export default defineConfig({
 	plugins: [
 		sveltekit(),
 		deno(),
-	]
+	],
+	envPrefix: ['PUBLIC_']
 });
