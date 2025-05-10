@@ -69,6 +69,12 @@
 	</div>
 </div>
 
+<div class="fixed bottom-[30px] right-[30px] border-1 rounded-full">
+	<a href="#" class="w-10 h-10 block text-center">
+		<i class="fa-solid fa-arrow-up align-[-webkit-baseline-middle]"></i>
+	</a>
+</div>
+
 <style>
 	:global(#article > h2) {
 		font-size: 1.5rem;
