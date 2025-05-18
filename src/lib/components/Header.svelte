@@ -5,6 +5,10 @@
             href: "/",
         },
         {
+            name: "プロフィール",
+            href: "/profile",
+        },
+        {
             name: "プライバシーポリシー",
             href: "/privacy",
         },

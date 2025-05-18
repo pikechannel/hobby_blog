@@ -4,7 +4,7 @@
 	export let color: string = 'currentColor';
 	export let brand: boolean = false;
 
-	$: iconClass = `align-[-webkit-baseline-middle] ${brand ? 'fab' : 'fas'} fa-${icon} fa-${size}`;
+	$: iconClass = `${brand ? 'fab' : 'fas'} fa-${icon} fa-${size} align-[-webkit-baseline-middle]!`;
 </script>
 
 <i class={iconClass} style="color: {color}"></i> 

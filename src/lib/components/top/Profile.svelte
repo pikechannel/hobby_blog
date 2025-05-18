@@ -18,17 +18,11 @@
 	
 	<div class="space-y-2 text-xs">
 		<span>名前: <b>Pike</b></span>
-		<div class="grid grid-cols-[auto_1fr]">
-			<div class="w-10">趣味：</div>
-			<div>ゲーム・アニメ鑑賞・ラーメン巡り</div>
+		<div class="">
+			<div>趣味: ゲーム・酒・ラーメン</div>
 		</div>
-		<div class="flex items-center space-x-4 mt-4">
-			<a href="{PUBLIC_GITHUB_URL}" target="_blank" rel="noopener noreferrer">
-				<FontAwesome icon="github" size="lg" brand={true} />
-			</a>
-			<a href="{PUBLIC_TWITTER_URL}" target="_blank" rel="noopener noreferrer">
-				<FontAwesome icon="twitter" size="lg" brand={true} />
-			</a>
+		<div class="text-right text-gray-500">
+			<a href="/profile">プロフィールページはこちら</a>
 		</div>
 	</div>
 </section>
