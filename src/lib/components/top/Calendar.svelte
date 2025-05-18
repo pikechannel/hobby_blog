@@ -27,7 +27,7 @@
     }
 </script>
 
-<section id="calendar" class="min-w-[350px]">
+<section id="calendar" class="min-w-[350px] text-center">
     <div id="calendar-box">
         {#each calendar as week}
             <div class="week">

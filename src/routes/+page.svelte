@@ -46,8 +46,8 @@
     </picture>
 </section>
 
-<div class="flex mt-5 p-5">
-    <main class="w-3/4">
+<div class="block md:flex mt-5 p-5">
+    <main class="w-full md:w-3/4">
         <section>
             <section class="px-6">
                 <h2 class="hina-mincho-regular text-3xl">記事一覧</h2>
@@ -71,7 +71,7 @@
         </section>
     </main>
 
-    <aside class="w-1/4">
+    <aside class="w-full md:w-1/4">
         <Profile />
         <Calendar />
     </aside>

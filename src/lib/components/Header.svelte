@@ -16,7 +16,7 @@
 </script>
 
 <header>
-    <nav class="pb-3 pl-[100px] pr-[100px] text-sm">
+    <nav class="pb-3 pl-[100px] pr-[100px] text-sm whitespace-nowrap">
         <ul class="flex justify-around">
             {#each menu as item}
                 <li
