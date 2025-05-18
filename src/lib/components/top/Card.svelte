@@ -8,7 +8,7 @@
     href="/article/{article.slug}" 
     class="w-full h-32 border-1 rounded-lg flex items-center mt-5 p-3 hover:bg-gray-50 transition-colors"
 >
-    <div class="w-36 h-25 flex-shrink-0">
+    <div class="w-36 h-25 flex-shrink-0  md:block hidden">
         <img 
             src={article.metadata.thumbnail} 
             alt={article.metadata.title}
