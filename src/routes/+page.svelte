@@ -71,7 +71,7 @@
         </section>
     </main>
 
-    <aside class="w-full md:w-1/4">
+    <aside class="w-full md:w-1/4 md:mt-0 mt-5">
         <Profile />
         <Calendar />
     </aside>
