@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import { promisify } from 'util';
-import type { PageServerLoad } from './$types';
-import { getArticles } from '$lib/getArticles';
-import type { TopPageData } from '$lib/types';
+import fs from 'node:fs';
+import path from 'node:path';
+import { promisify } from 'node:util';
+import type { ServerLoad } from '@sveltejs/kit';
+import { getArticles } from '../lib/getArticles';
+import type { TopPageData } from '../lib/types';
 
 const readFile = promisify(fs.readFile);
 
@@ -24,7 +24,7 @@ interface PageData {
   content: ArticleInfo[];
 }
 
-export const load: PageServerLoad = async (): Promise<TopPageData> => {
+export const load: ServerLoad = async (): Promise<TopPageData> => {
   const articles = getArticles();
   return { content: articles };
 };

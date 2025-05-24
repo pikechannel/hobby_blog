@@ -1,10 +1,9 @@
-import { dev } from '$app/environment';
 import { sequence } from '@sveltejs/kit/hooks';
-import crypto from 'crypto';
+import { randomBytes } from 'node:crypto';
 import type { Handle } from '@sveltejs/kit';
 
 const generateNonce = () => {
-	return crypto.randomBytes(16).toString('base64');
+	return randomBytes(16).toString('base64');
 };
 
 const nonceHandler: Handle = async ({ event, resolve }) => {

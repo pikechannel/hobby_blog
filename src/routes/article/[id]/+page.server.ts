@@ -1,12 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import { promisify } from 'util';
+import fs from 'node:fs';
+import path from 'node:path';
+import { promisify } from 'node:util';
 import markdown from 'markdown-it';
 import matter from 'gray-matter';
 import { format } from 'date-fns';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
-import { getArticles } from '$lib/getArticles';
+import { getArticles } from '../../../lib/getArticles';
 
 const readFile = promisify(fs.readFile);
 

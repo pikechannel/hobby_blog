@@ -1,5 +1,5 @@
 <script lang="ts">
-    import FontAwesome from '$lib/components/FontAwesome.svelte';
+    import FontAwesome from '../../components/FontAwesome.svelte';
 </script>
 
 <div class="fixed bottom-[30px] right-[30px] border-1 rounded-full">
