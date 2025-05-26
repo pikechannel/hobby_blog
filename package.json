@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@deno/vite-plugin": "^1.0.4",
+    "@sveltejs/adapter-vercel": "^5.7.2",
     "autoprefixer": "^10.4.21",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",

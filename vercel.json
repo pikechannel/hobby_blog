@@ -1,7 +1,7 @@
 {
-  "functions": {
-    "./**": {
-      "runtime": "vercel-deno@3.0.1"
-    }
-  }
-}
+  "buildCommand": "deno task build",
+  "devCommand": "deno task dev",
+  "framework": "sveltekit",
+  "installCommand": "deno cache main.ts",
+  "outputDirectory": ".svelte-kit/vercel/output"
+} 
