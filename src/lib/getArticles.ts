@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import type { ArticleInfo, Metadata } from '$lib/types';
 
 export function getArticles(): ArticleInfo[] {
-	const articlesDirectory = path.resolve(process.cwd(), './contents/articles');
+	const articlesDirectory = path.resolve(process.cwd(), '././contents/articles');
 	const filenames = fs.readdirSync(articlesDirectory);
 
 	const articles: ArticleInfo[] = filenames.map((filename) => {

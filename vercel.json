@@ -2,8 +2,8 @@
   "outputDirectory": ".svelte-kit/vercel/output",
   "routes": [
     {
-      "src": "/contents/(.*)",
-      "dest": "/contents/$1"
+      "src": "/./contents/(.*)",
+      "dest": "/./contents/$1"
     }
   ]
 } 
