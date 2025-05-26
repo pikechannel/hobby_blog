@@ -1,15 +1,5 @@
 {
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "framework": "sveltekit",
-  "installCommand": "npm install",
   "outputDirectory": ".svelte-kit/vercel/output",
-  "functions": {
-    "api/*.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
   "routes": [
     {
       "src": "/contents/(.*)",
