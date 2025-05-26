@@ -1,6 +1,0 @@
-{
-	"imports": {
-		"$lib/": "./src/lib/",
-		"$app/": "https://deno.land/x/sveltekit@1.30.3/src/runtime/app/"
-	}
-} 

@@ -1,6 +1,6 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { promisify } from 'node:util';
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
 import type { ServerLoad } from '@sveltejs/kit';
 import { getArticles } from '../lib/getArticles';
 import type { TopPageData } from '../lib/types';

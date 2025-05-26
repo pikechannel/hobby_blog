@@ -1,5 +1,5 @@
 import { sequence } from '@sveltejs/kit/hooks';
-import { randomBytes } from 'node:crypto';
+import { randomBytes } from 'crypto';
 import type { Handle } from '@sveltejs/kit';
 
 const generateNonce = () => {

@@ -7,30 +7,30 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "svelte-kit sync || echo ''",
+    "prepare": "svelte-kit sync",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
-    "@deno/vite-plugin": "^1.0.4",
     "@sveltejs/adapter-vercel": "^5.7.2",
     "autoprefixer": "^10.4.21",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
-    "marked": "^15.0.11",
     "markdown-it": "^14.1.0",
+    "marked": "^15.0.12",
     "postcss": "^8.5.3",
     "prismjs": "^1.30.0"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^6.0.0",
-    "@sveltejs/kit": "^2.20.7",
-    "@sveltejs/vite-plugin-svelte": "^5.0.0",
-    "@types/markdown-it": "^13.0.9",
-    "@types/node": "^20.11.24",
-    "svelte": "^5.28.2",
-    "svelte-check": "^4.1.6",
+    "@sveltejs/adapter-auto": "^6.0.1",
+    "@sveltejs/kit": "^2.21.1",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.15.21",
+    "svelte": "^5.33.2",
+    "svelte-check": "^4.2.1",
     "typescript": "^5.8.3",
-    "vite": "^6.3.3"
-  }
+    "vite": "^6.3.5"
+  },
+  "packageManager": "yarn@4.9.1"
 }

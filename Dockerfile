@@ -1,10 +1,13 @@
-FROM denoland/deno:alpine
-
-RUN apk update
-RUN apk add curl zip unzip
-
-USER deno
+FROM node:latest
 
 WORKDIR /hobby_blog
 
-ENV PATH="/root/.deno/bin:$PATH"
+RUN apt-get update \
+    && apt-get install -y 
+
+RUN rm -rf yarn.lock node_modules **/node_modules
+RUN yarn set version stable
+RUN yarn config set nodeLinker node-modules
+RUN touch yarn.lock
+RUN yarn set version latest
+RUN yarn install

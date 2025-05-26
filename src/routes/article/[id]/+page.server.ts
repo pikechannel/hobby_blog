@@ -1,6 +1,6 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { promisify } from 'node:util';
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
 import markdown from 'markdown-it';
 import matter from 'gray-matter';
 import { format } from 'date-fns';

@@ -1,7 +1,0 @@
-{
-  "buildCommand": "deno task build",
-  "devCommand": "deno task dev",
-  "framework": "sveltekit",
-  "installCommand": "curl -fsSL https://deno.land/x/install/install.sh | sh && deno cache main.ts",
-  "outputDirectory": ".svelte-kit/vercel/output"
-} 

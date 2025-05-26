@@ -1,5 +1,5 @@
-import fs from 'node:fs';
-import { promisify } from 'node:util';
+import fs from 'fs';
+import { promisify } from 'util';
 import markdown from 'markdown-it';
 import matter from 'gray-matter';
 import { format } from 'date-fns';
