@@ -4,6 +4,7 @@
   "devCommand": "yarn dev",
   "installCommand": "yarn",
   "outputDirectory": ".vercel/output",
+  "version": 2,
   "functions": {
     "api/*.js": {
       "runtime": "vercel/node@20.x"
