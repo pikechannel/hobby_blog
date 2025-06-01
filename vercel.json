@@ -1,9 +1,17 @@
 {
+  "buildCommand": "yarn build",
+  "devCommand": "yarn dev",
   "framework": "sveltekit",
+  "installCommand": "yarn install",
+  "outputDirectory": ".svelte-kit/vercel/output",
   "routes": [
     {
       "src": "/contents/(.*)",
       "dest": "/contents/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ],
   "builds": [
