@@ -7,8 +7,6 @@ const config = {
 		adapter: adapter({
 			runtime: 'nodejs18.x',
 			split: false,
-			regions: ['hnd1'],
-			edge: false,
 			envPrefix: ['VITE_', 'PUBLIC_']
 		})
 	},
