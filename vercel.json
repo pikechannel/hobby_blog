@@ -11,7 +11,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/.svelte-kit/vercel/output/$1"
     }
   ],
   "builds": [
@@ -19,7 +19,7 @@
       "src": "package.json",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["src/lib/contents/**", "build/**"],
+        "includeFiles": ["src/lib/contents/**"],
         "memory": 1024,
         "maxDuration": 10
       }
