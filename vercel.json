@@ -1,40 +1,6 @@
 {
+  "framework": "sveltekit",
   "buildCommand": "yarn build",
   "devCommand": "yarn dev",
-  "framework": "sveltekit",
-  "installCommand": "yarn install",
-  "outputDirectory": ".svelte-kit/vercel/output",
-  "routes": [
-    {
-      "src": "/contents/(.*)",
-      "dest": "/contents/$1"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/.svelte-kit/vercel/output/server/index.js",
-      "continue": true
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/.svelte-kit/vercel/output/server/index.js"
-    }
-  ],
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["src/lib/contents/**", ".svelte-kit/vercel/output/**"],
-        "memory": 1024,
-        "maxDuration": 10
-      }
-    }
-  ]
+  "installCommand": "yarn install"
 } 
