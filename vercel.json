@@ -6,7 +6,11 @@
       "use": "@vercel/node",
       "config": {
         "outputDirectory": ".svelte-kit/vercel/output",
-        "runtime": "nodejs18.x"
+        "runtime": "nodejs18.x",
+        "includeFiles": [
+          "src/lib/contents/**",
+          ".svelte-kit/vercel/output/**"
+        ]
       }
     }
   ]
