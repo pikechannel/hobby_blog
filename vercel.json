@@ -9,7 +9,8 @@
         "runtime": "nodejs18.x",
         "includeFiles": [
           "articles/**",
-          ".vercel/output/**"
+          ".vercel/output/**",
+          "src/lib/contents/**"
         ]
       }
     }
