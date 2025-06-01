@@ -1,3 +1,12 @@
 {
-  "framework": "sveltekit"
+  "framework": "sveltekit",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "runtime": "nodejs18.x"
+      }
+    }
+  ]
 } 
