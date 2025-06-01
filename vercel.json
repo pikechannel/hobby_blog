@@ -1,3 +1,6 @@
 {
-  "framework": "sveltekit"
+  "framework": "sveltekit",
+  "buildCommand": "yarn build",
+  "devCommand": "yarn dev",
+  "installCommand": "yarn install"
 } 
