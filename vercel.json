@@ -4,12 +4,6 @@
   "framework": "sveltekit",
   "installCommand": "yarn",
   "outputDirectory": ".svelte-kit/vercel/output",
-  "functions": {
-    "api/*.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
   "routes": [
     {
       "src": "/contents/(.*)",
@@ -21,7 +15,9 @@
       "src": "package.json",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["src/lib/contents/**"]
+        "includeFiles": ["src/lib/contents/**"],
+        "memory": 1024,
+        "maxDuration": 10
       }
     }
   ]
