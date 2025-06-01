@@ -3,5 +3,10 @@
   "buildCommand": "yarn build",
   "devCommand": "yarn dev",
   "installCommand": "yarn",
-  "outputDirectory": ".vercel/output"
+  "outputDirectory": ".vercel/output",
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
 } 
