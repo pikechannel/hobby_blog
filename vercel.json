@@ -1,18 +1,7 @@
 {
   "framework": "sveltekit",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "outputDirectory": ".vercel/output",
-        "runtime": "nodejs18.x",
-        "includeFiles": [
-          "articles/**",
-          ".vercel/output/**",
-          "src/lib/contents/**"
-        ]
-      }
-    }
-  ]
+  "buildCommand": "yarn build",
+  "devCommand": "yarn dev",
+  "installCommand": "yarn",
+  "outputDirectory": ".vercel/output"
 } 
