@@ -15,7 +15,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/.svelte-kit/vercel/output/$1",
+      "dest": "/.svelte-kit/vercel/output/server/index.js",
       "continue": true
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/.svelte-kit/vercel/output/index.html"
+      "dest": "/.svelte-kit/vercel/output/server/index.js"
     }
   ],
   "builds": [
@@ -31,7 +31,7 @@
       "src": "package.json",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["src/lib/contents/**"],
+        "includeFiles": ["src/lib/contents/**", ".svelte-kit/vercel/output/**"],
         "memory": 1024,
         "maxDuration": 10
       }
