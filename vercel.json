@@ -5,6 +5,7 @@
       "src": "package.json",
       "use": "@vercel/node",
       "config": {
+        "outputDirectory": ".svelte-kit/vercel/output",
         "runtime": "nodejs18.x"
       }
     }
