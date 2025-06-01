@@ -1,8 +1,8 @@
 {
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
+  "buildCommand": "yarn build",
+  "devCommand": "yarn dev",
   "framework": "sveltekit",
-  "installCommand": "npm install",
+  "installCommand": "yarn",
   "outputDirectory": ".svelte-kit/vercel/output",
   "functions": {
     "api/*.js": {
