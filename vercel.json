@@ -6,7 +6,7 @@
   "outputDirectory": ".vercel/output",
   "functions": {
     "api/*.js": {
-      "runtime": "edge"
+      "runtime": "nodejs@20.x"
     }
   }
 } 
