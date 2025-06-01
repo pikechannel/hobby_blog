@@ -6,7 +6,7 @@
   "outputDirectory": ".vercel/output",
   "version": 2,
   "functions": {
-    "**/*.js": {
+    ".vercel/output/functions/**/*.js": {
       "runtime": "nodejs@20.11.1"
     }
   }
