@@ -10,8 +10,20 @@
       "dest": "/contents/$1"
     },
     {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/.svelte-kit/vercel/output/$1"
+      "dest": "/.svelte-kit/vercel/output/$1",
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/.svelte-kit/vercel/output/index.html"
     }
   ],
   "builds": [
