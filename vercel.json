@@ -5,8 +5,16 @@
   "installCommand": "yarn",
   "outputDirectory": ".vercel/output",
   "version": 2,
-  "includeFiles": [
-    "src/lib/contents/**",
-    "articles/**"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "src/lib/contents/**",
+          "articles/**"
+        ]
+      }
+    }
   ]
 } 
