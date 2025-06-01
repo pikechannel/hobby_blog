@@ -17,7 +17,7 @@ export const load = (async ({ params }) => {
       throw error(404, 'Article ID is required');
     }
 
-    const filePath = path.resolve('src/lib/contents/articles', `${id}.md`);
+    const filePath = path.resolve('contents/articles', `${id}.md`);
     const slug = path.basename(filePath, '.md');
 
     const fileContent = await readFile(filePath, 'utf-8');
