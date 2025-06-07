@@ -1,34 +1,17 @@
-import fs from 'fs';
-import { promisify } from 'util';
-import markdown from 'markdown-it';
-import matter from 'gray-matter';
-import { format } from 'date-fns';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
-
-const readFile = promisify(fs.readFile);
-
-interface PrivacyMetadata {
-    date: string;
-    title: string;
-}
+import { render } from 'svelte/server';
 
 export const load = (async () => {
     try {
-        const fileContent = await readFile("contents/privacy.svx", 'utf-8');
-        const parsedMatter = matter(fileContent);
-        const mdParser = new markdown();
-        const htmlContent = mdParser.render(parsedMatter.content);
-
-        const metadata: PrivacyMetadata = {
-            ...(parsedMatter.data as PrivacyMetadata),
-            date: parsedMatter.data.date instanceof Date
-                ? format(parsedMatter.data.date, 'yyyy-MM-dd')
-                : parsedMatter.data.date
-        };
+        const module = await import("/contents/privacy.svx" /* @vite-ignore */);
+        
+        const metadata = module.metadata;
+        const Component:any = module.default;
+        const { body } = render(Component);
 
         return {
-            htmlContent,
+            htmlContent: body,
             metadata
         };
     } catch (err) {

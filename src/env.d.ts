@@ -1,4 +1,4 @@
-declare module '*.md' {
+declare module '*.svx' {
   import type { SvelteComponent } from 'svelte';
   const component: SvelteComponent;
   export default component;

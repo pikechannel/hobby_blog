@@ -1,47 +1,47 @@
-import fs from 'fs';
 import path from 'path';
-import { promisify } from 'util';
-import markdown from 'markdown-it';
-import matter from 'gray-matter';
-import { format } from 'date-fns';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 import { getArticles } from '../../../lib/getArticles';
+import { render } from 'svelte/server';
 
-const readFile = promisify(fs.readFile);
+interface ArticleMetadata {
+    date: string;
+    title: string;
+    description: string;
+    tags: string[];
+}
 
 export const load = (async ({ params }) => {
-  try {
-    const { id } = params;
-    if (!id) {
-      throw error(404, 'Article ID is required');
+    try {
+        const { id } = params;
+        if (!id) {
+            throw error(404, 'Article ID is required');
+        }
+
+        const filePath = path.join(process.cwd(), 'contents', 'articles', `${id}.svx`);
+        const slug = path.basename(filePath, '.svx');
+
+        // build時に「.svelte-kit/output/server/entries/pages/article/_id_/_page.server.ts.jsのimport部分のURLに「.js」の拡張子が付与されないため場合分け
+        const isDev = process.env.NODE_ENV === 'development';
+        const importPath = isDev 
+            ? `../../../../contents/articles/${id}.svx`
+            : `../../../../contents/articles/${id}.svx.js`;
+
+        const module = await import(importPath /* @vite-ignore */);
+        const metadata = module.metadata;
+        const Component: any = module.default;
+        const { body } = render(Component);
+
+        const articles = getArticles();
+
+        return {
+            slug,
+            articles,
+            htmlContent: body,
+            metadata
+        };
+    } catch (err) {
+        console.error('Error loading article:', err);
+        throw error(404, 'Article not found');
     }
-
-    const filePath = path.resolve('contents/articles', `${id}.svx`);
-    const slug = path.basename(filePath, '.svx');
-
-    const fileContent = await readFile(filePath, 'utf-8');
-    const parsedMatter = matter(fileContent);
-    const mdParser = new markdown();
-    const htmlContent = mdParser.render(parsedMatter.content);
-
-    const metadata = {
-      ...parsedMatter.data,
-      date: parsedMatter.data.date instanceof Date
-        ? format(parsedMatter.data.date, 'yyyy-MM-dd')
-        : parsedMatter.data.date
-    };
-
-    const articles = getArticles();
-
-    return {
-      slug,
-      articles,
-      htmlContent,
-      metadata
-    };
-  } catch (err) {
-    console.error('Error loading article:', err);
-    throw error(404, 'Article not found');
-  }
 }) satisfies PageServerLoad;
