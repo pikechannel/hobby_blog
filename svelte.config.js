@@ -16,9 +16,17 @@ const config = {
 				entryFileNames: '[name].js',
 				assetFileNames: '[name][extname]'
 			}
-		})
+		}),
+		files: {
+			assets: 'static',
+			lib: 'src/lib',
+			routes: 'src/routes',
+			serviceWorker: 'src/service-worker',
+			appTemplate: 'src/app.html',
+			errorTemplate: 'src/error.html'
+		}
 	},
-	preprocess: [vitePreprocess(),mdsvex(mdsvexConfig)],
+	preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
 	extensions: [".svelte", ".svx"]
 };
 

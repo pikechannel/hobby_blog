@@ -15,12 +15,17 @@ export default defineConfig({
 			input: {
 				main: 'src/app.html',
 				...svxFiles
+			},
+			output: {
+				manualChunks: undefined
 			}
 		},
 	},
+	// 静的ファイルのコピー設定
+	publicDir: 'static',
 	server: {
 		fs: {
-			allow: ['.', './contents']
+			allow: ['contents']
 		}
 	},
 	resolve: {
