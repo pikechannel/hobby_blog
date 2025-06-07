@@ -16,7 +16,7 @@ interface ProfileMetadata {
 
 export const load = (async () => {
     try {
-        const fileContent = await readFile("contents/profile.md", 'utf-8');
+        const fileContent = await readFile("contents/profile.svx", 'utf-8');
         const parsedMatter = matter(fileContent);
         const mdParser = new markdown();
         const htmlContent = mdParser.render(parsedMatter.content);

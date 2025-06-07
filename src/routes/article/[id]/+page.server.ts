@@ -17,8 +17,8 @@ export const load = (async ({ params }) => {
       throw error(404, 'Article ID is required');
     }
 
-    const filePath = path.resolve('contents/articles', `${id}.md`);
-    const slug = path.basename(filePath, '.md');
+    const filePath = path.resolve('contents/articles', `${id}.svx`);
+    const slug = path.basename(filePath, '.svx');
 
     const fileContent = await readFile(filePath, 'utf-8');
     const parsedMatter = matter(fileContent);

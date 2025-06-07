@@ -15,7 +15,7 @@ interface PrivacyMetadata {
 
 export const load = (async () => {
     try {
-        const fileContent = await readFile("contents/privacy.md", 'utf-8');
+        const fileContent = await readFile("contents/privacy.svx", 'utf-8');
         const parsedMatter = matter(fileContent);
         const mdParser = new markdown();
         const htmlContent = mdParser.render(parsedMatter.content);
