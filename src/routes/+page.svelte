@@ -1,80 +1,54 @@
 <script lang="ts">
-    import Card from "$lib/components/top/Card.svelte";
-    import Calendar from "$lib/components/top/Calendar.svelte";
-    import Profile from "$lib/components/top/Profile.svelte";
-    interface Metadata {
-        title: string;
-        date: string;
-        category: string;
-        description: string;
-        thumbnail: string;
-    }
+	import type { PageData } from './$types';
+	import ArticlesPageTop from '$lib/components/articles/PageTop.svelte';
+	import { PUBLIC_TITLE } from '$lib/constants';
+	import { get } from 'svelte/store';
+	import { getArticlePath } from '$lib/store';
 
-    interface ArticleInfo {
-        slug: string;
-        metadata: Metadata;
-    }
+	export let data: PageData;
 
-    interface PageData {
-        content: ArticleInfo[];
-    }
+	const articles = get(getArticlePath) || [];
+	let currentPage = 1;
+	const articlesPerPage = 6;
+	let hasMore = articles.length > articlesPerPage;
 
-    export let data: PageData;
-    
-    const ITEMS_PER_PAGE = 10;
-    let currentPage = 1;
-    let articles = data.content.slice(0, ITEMS_PER_PAGE);
-    let hasMore = data.content.length > ITEMS_PER_PAGE;
-
-    function loadMore() {
-        currentPage++;
-        const newCount = currentPage * ITEMS_PER_PAGE;
-        articles = data.content.slice(0, newCount);
-        hasMore = data.content.length > newCount;
-    }
+	function loadMore() {
+		currentPage += 1;
+		const newCount = currentPage * articlesPerPage;
+		hasMore = articles.length > newCount;
+	}
 </script>
 
-<section class="w-full">
-    <picture>
-        <source srcset="/img/header_logo.webp" type="image/webp">
-        <img
-            src="/img/header_logo.png"
-            alt="Blog Header"
-            loading="lazy"
-            class="m-auto"
-        />
-    </picture>
-</section>
+<ArticlesPageTop title={PUBLIC_TITLE} />
 
-<div class="block md:flex mt-5 p-5">
-    <main class="w-full md:w-3/4">
-        <section>
-            <section class="px-6">
-                <h2 class="hina-mincho-regular text-3xl">記事一覧</h2>
-                {#each articles as article (article.slug)}
-                    <Card {article} />
-                {/each}
-            </section>
-            
-            {#if hasMore}
-                <section class="p-6">
-                    <div class="text-center">
-                        <button
-                            class="rounded-full w-64 h-12 text-white bg-blue-400 hover:bg-blue-500 transition-colors"
-                            on:click={loadMore}
-                        >
-                            もっとみる
-                        </button>
-                    </div>
-                </section>
-            {/if}
-        </section>
-    </main>
-
-    <aside class="w-full md:w-1/4 md:mt-0 mt-5">
-        <Profile />
-        <Calendar />
-    </aside>
+<div class="container mx-auto px-4 py-8">
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		{#each articles.slice(0, currentPage * articlesPerPage) as article}
+			<a
+				href="/article/{article.slug}"
+				class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+			>
+				<h2 class="text-xl font-bold mb-2">{article.metadata.title}</h2>
+				<p class="text-gray-600 mb-4">{article.metadata.description}</p>
+				<div class="flex flex-wrap gap-2">
+					{#each article.metadata.tags as tag}
+						<span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">{tag}</span>
+					{/each}
+				</div>
+				<p class="text-gray-500 text-sm mt-4">{article.metadata.date}</p>
+			</a>
+		{/each}
+	</div>
+	{#if hasMore}
+		<div class="text-center mt-8">
+			<button
+				on:click={loadMore}
+				class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
+			>
+				Load More
+			</button>
+		</div>
+	{/if}
 </div>
 
 <style>
