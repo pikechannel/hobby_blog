@@ -1,6 +1,6 @@
 ---
 title: "SvelteKitとDenoで作るモダンなブログ"
-date: "2024-03-20"
+date: "2025-03-20"
 category: "技術"
 description: "SvelteKitとDenoを使用して、モダンで高速なブログサイトを構築する方法を解説します。"
 thumbnail: '/img/header_logo.png'

@@ -18,4 +18,14 @@ export default defineConfig({
 			}
 		},
 	},
+	server: {
+		fs: {
+			allow: ['.', './contents']
+		}
+	},
+	resolve: {
+		alias: {
+			'$contents': path.resolve('./contents')
+		}
+	}
 });

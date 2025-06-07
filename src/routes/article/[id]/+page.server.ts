@@ -3,6 +3,8 @@ import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 import { getArticles } from '../../../lib/getArticles';
 import { render } from 'svelte/server';
+import { get } from 'svelte/store';
+import { getArticlePath } from '$lib/store';
 
 interface ArticleMetadata {
     date: string;
@@ -32,7 +34,7 @@ export const load = (async ({ params }) => {
         const Component: any = module.default;
         const { body } = render(Component);
 
-        const articles =  getArticles();;
+        const articles = get(getArticlePath);
 
         return {
             slug,

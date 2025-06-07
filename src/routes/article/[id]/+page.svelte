@@ -2,18 +2,22 @@
 	import type { PageData } from "$lib/types";
 	import ArticlesPageTop from "$lib/components/articles/PageTop.svelte";
 	import { PUBLIC_TITLE } from "$lib/constants";
+	import { getArticlePath } from '$lib/store';
+	import { get } from 'svelte/store';
 
 	export let data: PageData;
 
+	const al = get(getArticlePath);
+
 	// $:リアクティブ宣言を使用して、dataの変更を監視
-	$: currentIndex = data.articles.findIndex(
+	$: currentIndex = al.findIndex(
 		(article) => article.slug === data.slug,
 	);
 	$: nextArticle =
-		currentIndex > 0 ? data.articles[currentIndex - 1]?.slug : null;
+		currentIndex > 0 ? al[currentIndex - 1]?.slug : null;
 	$: previousArticle =
-		currentIndex < data.articles.length - 1
-			? data.articles[currentIndex + 1]?.slug
+		currentIndex < al.length - 1
+			? al[currentIndex + 1]?.slug
 			: null;
 </script>
 
