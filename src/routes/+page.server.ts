@@ -25,6 +25,6 @@ interface PageData {
 }
 
 export const load: ServerLoad = async (): Promise<TopPageData> => {
-  const articles = getArticles();
+  const articles =  getArticles();;
   return { content: articles };
 };

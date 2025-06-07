@@ -32,7 +32,7 @@ export const load = (async ({ params }) => {
         const Component: any = module.default;
         const { body } = render(Component);
 
-        const articles = getArticles();
+        const articles =  getArticles();;
 
         return {
             slug,
