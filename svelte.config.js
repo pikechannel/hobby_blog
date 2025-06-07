@@ -9,7 +9,13 @@ const config = {
 		adapter: adapter({
 			runtime: 'nodejs18.x',
 			split: false,
-			envPrefix: ['VITE_', 'PUBLIC_']
+			envPrefix: ['VITE_', 'PUBLIC_'],
+			output: {
+				format: 'esm',
+				chunkFileNames: '[name].js',
+				entryFileNames: '[name].js',
+				assetFileNames: '[name][extname]'
+			}
 		})
 	},
 	preprocess: [vitePreprocess(),mdsvex(mdsvexConfig)],
