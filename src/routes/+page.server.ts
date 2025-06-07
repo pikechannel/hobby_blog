@@ -1,11 +1,8 @@
 import fs from 'fs';
-import path from 'path';
 import { promisify } from 'util';
 import type { ServerLoad } from '@sveltejs/kit';
-import { getArticles } from '../lib/getArticles';
-import type { TopPageData } from '../lib/types';
-
-const readFile = promisify(fs.readFile);
+import { get } from 'svelte/store';
+import { getArticlePath } from '$lib/store';
 
 interface Metadata {
   title: string;
@@ -20,11 +17,7 @@ interface ArticleInfo {
   metadata: Metadata;
 }
 
-interface PageData {
-  content: ArticleInfo[];
-}
-
-export const load: ServerLoad = async (): Promise<TopPageData> => {
-  const articles =  getArticles();;
-  return { content: articles };
+export const load: ServerLoad = async () => {
+  const articles = get(getArticlePath);
+  return { articles };
 };
