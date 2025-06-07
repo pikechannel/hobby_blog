@@ -1,6 +1,7 @@
 import { sequence } from '@sveltejs/kit/hooks';
 import { randomBytes } from 'crypto';
 import type { Handle } from '@sveltejs/kit';
+import { getArticlePath } from '$lib/store';
 
 const generateNonce = () => {
 	return randomBytes(16).toString('base64');
@@ -10,6 +11,8 @@ const generateNonce = () => {
 const nonceHandler: Handle = async ({ event, resolve }) => {
 	const nonce = generateNonce();
 	event.locals.nonce = nonce;
+
+	let read = getArticlePath;
 
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) => {
@@ -24,4 +27,3 @@ const nonceHandler: Handle = async ({ event, resolve }) => {
 };
 
 export const handle = sequence(nonceHandler);
-
