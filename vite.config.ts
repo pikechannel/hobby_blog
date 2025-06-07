@@ -16,14 +16,14 @@ export default defineConfig({
 	plugins: [sveltekit()],
 	build: {
 		rollupOptions: {
+			output: {
+				manualChunks: undefined
+			},
 			input: {
 				main: 'src/app.html',
 				...svxFiles
-			},
-			output: {
-				manualChunks: undefined
 			}
-		},
+		}
 	},
 	// 静的ファイルのコピー設定
 	publicDir: 'static',
@@ -37,5 +37,9 @@ export default defineConfig({
 		alias: {
 			'$contents': resolve(__dirname, 'contents')
 		}
+	},
+	// contentsディレクトリを出力に含める
+	optimizeDeps: {
+		include: ['contents/**/*.svx']
 	}
 });
