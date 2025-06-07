@@ -1,23 +1,8 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@sveltejs/adapter-vercel"
-    },
-    {
-      "src": "contents/**/*.svx",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/contents/(.*)",
-      "dest": "/contents/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ]
+  "framework": "sveltekit",
+  "buildCommand": "yarn build",
+  "devCommand": "yarn dev",
+  "installCommand": "yarn",
+  "outputDirectory": ".vercel/output",
+  "version": 2
 } 
