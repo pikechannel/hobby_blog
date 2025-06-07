@@ -5,6 +5,8 @@
     import "$lib/css/app.css";
 
     let title = PUBLIC_TITLE;
+
+    export const prerender = true;
 </script>
 
 
