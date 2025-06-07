@@ -36,3 +36,4 @@ const getArticles = () => {
 };
 
 export const getArticlePath = readable<Article[]>(getArticles());
+ 
