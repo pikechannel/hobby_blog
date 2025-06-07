@@ -4,8 +4,5 @@
   "devCommand": "yarn dev",
   "installCommand": "yarn",
   "outputDirectory": ".vercel/output",
-  "version": 2,
-  "includeFiles": [
-    "contents/**"
-  ]
+  "version": 2
 } 
