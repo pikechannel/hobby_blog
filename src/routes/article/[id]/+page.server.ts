@@ -12,16 +12,6 @@ interface ArticleMetadata {
     tags: string[];
 }
 
-export function entries() {
-    const articles = get(getArticlePath);
-
-    const allRoutes = articles.map(article => ({
-        id: article.path
-    }));
-
-    return allRoutes;
-}
-
 export const load = (async ({ params }) => {
     try {
         const { id } = params;

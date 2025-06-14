@@ -1,10 +1,13 @@
 export interface Article {
 	slug: string;
-	title: string;
-	description: string;
-	date: string;
-	category: string;
-	thumbnail: string;
+	path: string;
+	metadata: {
+		date: string;
+		title: string;
+		description: string;
+		tags: string[];
+		thumbnail?: string;
+	};
 }
 
 export interface PageData {
