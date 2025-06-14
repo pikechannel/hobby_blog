@@ -32,12 +32,6 @@ export const load = (async ({ params }) => {
         const filePath = path.join(process.cwd(), 'contents', 'articles', `${id}.svx`);
         const slug = path.basename(filePath, '.svx');
 
-        // 開発環境と本番環境で異なるパスを使用
-        const isDev = process.env.NODE_ENV === 'development';
-        // const importPath = isDev 
-        //     ? `/contents/articles/${id}.svx`
-        //     : `/contents/articles/${id}.svx`;
-
         const importPath = `/contents/articles/${id}.svx`
 
         const modules = import.meta.glob<{ metadata: ArticleMetadata; default: any }>('/contents/articles/*.svx', { eager: true });

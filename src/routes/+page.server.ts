@@ -1,5 +1,3 @@
-import fs from 'fs';
-import { promisify } from 'util';
 import type { ServerLoad } from '@sveltejs/kit';
 import { get } from 'svelte/store';
 import { getArticlePath } from '$lib/store';

@@ -4,6 +4,8 @@
 
     export let data;
 
+    console.log(PUBLIC_GITHUB_URL)
+
 </script>
 
 <div class="max-w-4xl mx-auto px-4 py-12">
