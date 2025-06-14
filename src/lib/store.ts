@@ -16,9 +16,9 @@ interface Module {
 }
 
 const getArticles = () => {
-    const modules = import.meta.glob<Module>('/contents/articles/*.svx', { eager: true });
+    const modules = import.meta.glob<Module>('../contents/articles/*.svx', { eager: true });
     const articles: Article[] = Object.keys(modules).map((filename) => {
-        const slug = filename.replace(/^\/contents\/articles\//, '').replace(/.svx/, '');
+        const slug = filename.replace(/^\.\.\/contents\/articles\//, '').replace(/.svx/, '');
         const module = modules[filename];
         return { 
             slug, 
