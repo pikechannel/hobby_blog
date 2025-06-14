@@ -22,5 +22,6 @@ export default defineConfig({
 		fs: {
 			allow: ['..']
 		}
-	}
+	},
+	envPrefix: ['VITE_', 'PUBLIC_']
 });
