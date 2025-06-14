@@ -12,8 +12,7 @@ const config = {
 			envPrefix: ['VITE_', 'PUBLIC_']
 		}),
 		csrf: {
-			checkOrigin: true,
-			checkReferer: true
+			checkOrigin: true
 		},
 		csp: {
 			mode: 'auto',
