@@ -12,6 +12,16 @@ interface ArticleMetadata {
     tags: string[];
 }
 
+export function entries() {
+    const articles = get(getArticlePath);
+
+    const allRoutes = articles.map(article => ({
+        id: article.path
+    }));
+
+    return allRoutes;
+}
+
 export const load = (async ({ params }) => {
     try {
         const { id } = params;
@@ -19,14 +29,14 @@ export const load = (async ({ params }) => {
             throw error(404, 'Article ID is required');
         }
 
-        const filePath = path.join(process.cwd(), 'static', 'contents', 'articles', `${id}.svx`);
+        const filePath = path.join(process.cwd(), 'src', 'contents', 'articles', `${id}.svx`);
         const slug = path.basename(filePath, '.svx');
 
         // 開発環境と本番環境で異なるパスを使用
         const isDev = process.env.NODE_ENV === 'development';
         const importPath = isDev 
-            ? `../../../../contents/articles/${id}.svx`
-            : `/contents/articles/${id}.svx`;
+            ? `../../../../src/contents/articles/${id}.svx`
+            : `/src/contents/articles/${id}.svx`;
 
         const module = await import(importPath /* @vite-ignore */);
         const metadata = module.metadata;

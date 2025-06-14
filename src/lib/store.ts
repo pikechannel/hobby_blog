@@ -2,6 +2,7 @@ import { readable } from 'svelte/store';
 
 interface Article {
     slug: string;
+    path: string;
     metadata: {
         date: string;
         title: string;
@@ -17,12 +18,14 @@ interface Module {
 
 const getArticles = () => {
     const modules = import.meta.glob<Module>('../contents/articles/*.svx', { eager: true });
-    const articles: Article[] = Object.keys(modules).map((filename) => {
-        const slug = filename.replace(/^\.\.\/contents\/articles\//, '').replace(/.svx/, '');
-        const module = modules[filename];
+    const articles: Article[] = Object.keys(modules).map((filePath) => {
+        const slug = filePath.replace(/^\.\.\/contents\/articles\//, '').replace(/.svx/, '');
+        const module = modules[filePath];
+        const path = "article/" + filePath
         return { 
             slug, 
-            metadata: module.metadata 
+            metadata: module.metadata,
+            path
         };
     });
 
