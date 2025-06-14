@@ -13,7 +13,7 @@
 
 	// $:リアクティブ宣言を使用して、dataの変更を監視
 	$: currentIndex = al.findIndex(
-		(article) => article.slug === data.slug,
+		(article: { slug: string }) => article.slug === data.slug,
 	);
 	$: nextArticle =
 		currentIndex > 0 ? al[currentIndex - 1]?.slug : null;
@@ -39,6 +39,95 @@
 	});
 </script>
 
+<div class="min-h-screen text-[#586e75]">
+	<div class="relative">
+		<div class="fixed inset-0 bg-[url('/img/alchemy-pattern.png')] opacity-5 bg-contain bg-center bg-no-repeat -z-10"></div>
+		<div class="pt-8 pb-4 relative">
+			<picture>
+				<source srcset="/img/header_logo.webp" type="image/webp">
+				<img class="m-auto w-48 hover:scale-105 transition-transform duration-300" src="/img/header_logo.png" alt="">
+			</picture>
+		</div>
+		<main class="container mx-auto px-4 py-12 relative">
+			<div class="max-w-7xl mx-auto">
+				<div class="flex gap-8">
+					<div class="flex-1">
+						<article id="article" class="prose prose-lg max-w-none leading-[3] bg-white/90 backdrop-blur-sm rounded-xl border-2 border-[#93a1a1] p-8 shadow-lg">
+							{@html data.htmlContent}
+						</article>
+						<div class="flex justify-between items-center mt-12 mb-8 p-4">
+							{#if nextArticle}
+								<a
+									href="/article/{nextArticle}"
+									class="flex flex-start items-center gap-2 px-6 py-3 text-[#268bd2] hover:text-[#2aa198] hover:bg-[#eee8d5] rounded-lg transition-all duration-200 font-medium"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										class="h-5 w-5"
+										viewBox="0 0 20 20"
+										fill="currentColor"
+									>
+										<path
+											fill-rule="evenodd"
+											d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+											clip-rule="evenodd"
+										/>
+									</svg>
+									次の記事
+								</a>
+							{:else}
+								<div></div>
+							{/if}
+							{#if previousArticle}
+								<a
+									href="/article/{previousArticle}"
+									class="flex flex-end items-center gap-2 px-6 py-3 text-[#268bd2] hover:text-[#2aa198] hover:bg-[#eee8d5] rounded-lg transition-all duration-200 font-medium"
+								>
+									前の記事
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										class="h-5 w-5"
+										viewBox="0 0 20 20"
+										fill="currentColor"
+									>
+										<path
+											fill-rule="evenodd"
+											d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+											clip-rule="evenodd"
+										/>
+									</svg>
+								</a>
+							{:else}
+								<div></div>
+							{/if}
+						</div>
+					</div>
+
+					{#if tableOfContents.length > 0}
+						<nav class="w-64 sticky top-8 h-fit p-6 bg-white/90 backdrop-blur-sm rounded-xl border-2 border-[#93a1a1] shadow-lg">
+							<h2 class="text-lg font-bold mb-4 text-[#268bd2]">目次</h2>
+							<ul class="space-y-2">
+								{#each tableOfContents as item}
+									<li class="pl-{(item.level - 2) * 4}">
+										<a
+											href="#{item.id}"
+											class="text-[#268bd2] hover:text-[#2aa198] hover:underline transition-colors duration-200"
+										>
+											{item.text}
+										</a>
+									</li>
+								{/each}
+							</ul>
+						</nav>
+					{/if}
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<ArticlesPageTop title={PUBLIC_TITLE} />
+</div>
+
 <svelte:head>
 	<title>{data.metadata.title} | {PUBLIC_TITLE}</title>
 	<meta name="description" content={data.metadata.description} />
@@ -58,101 +147,6 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
 	></script>
 </svelte:head>
-
-<div class="max-w-4xl mx-auto px-4 py-8">
-	<div class="mb-8">
-		<img
-			class="w-full h-96 object-cover rounded-lg shadow-lg"
-			src={data.metadata.thumbnail}
-			alt={data.metadata.title}
-		/>
-	</div>
-	<h1 class="text-4xl font-bold mb-4">{data.metadata.title}</h1>
-	<div class="flex items-center gap-4 mb-8">
-		<p
-			class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
-		>
-			{data.metadata.category}
-		</p>
-		<p class="text-gray-600">{data.metadata.date}</p>
-	</div>
-</div>
-
-<div class="max-w-4xl mx-auto px-4">
-	<div class="flex gap-8">
-		<div class="flex-1">
-			<article id="article" class="prose prose-lg max-w-none leading-[3]">
-				{@html data.htmlContent}
-			</article>
-			<div class="flex justify-between items-center mt-12 mb-8 p-4">
-				{#if nextArticle}
-					<a
-						href="/article/{nextArticle}"
-						class="flex flex-start items-center gap-2 px-4 py-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md transition-colors duration-200"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							class="h-5 w-5"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-						>
-							<path
-								fill-rule="evenodd"
-								d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-						次の記事
-					</a>
-				{:else}
-					<div></div>
-				{/if}
-				{#if previousArticle}
-					<a
-						href="/article/{previousArticle}"
-						class="flex flex-end items-center gap-2 px-4 py-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md transition-colors duration-200"
-					>
-						前の記事
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							class="h-5 w-5"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-						>
-							<path
-								fill-rule="evenodd"
-								d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-					</a>
-				{:else}
-					<div></div>
-				{/if}
-			</div>
-		</div>
-
-		{#if tableOfContents.length > 0}
-			<nav class="w-64 sticky top-8 h-fit p-4 bg-gray-50 rounded-lg">
-				<h2 class="text-lg font-bold mb-4">目次</h2>
-				<ul class="space-y-2">
-					{#each tableOfContents as item}
-						<li class="pl-{(item.level - 2) * 4}">
-							<a
-								href="#{item.id}"
-								class="text-blue-600 hover:text-blue-800 hover:underline"
-							>
-								{item.text}
-							</a>
-						</li>
-					{/each}
-				</ul>
-			</nav>
-		{/if}
-	</div>
-</div>
-
-<ArticlesPageTop />
 
 <style>
 	:global(#article > h2) {
