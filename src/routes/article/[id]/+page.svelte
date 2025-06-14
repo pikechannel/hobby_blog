@@ -4,10 +4,12 @@
 	import { PUBLIC_TITLE } from "$lib/constants";
 	import { getArticlePath } from '$lib/store';
 	import { get } from 'svelte/store';
+    import { onMount } from "svelte";
 
 	export let data: PageData;
 
 	const al = get(getArticlePath);
+	let tableOfContents: { id: string; text: string; level: number }[] = [];
 
 	// $:リアクティブ宣言を使用して、dataの変更を監視
 	$: currentIndex = al.findIndex(
@@ -19,6 +21,22 @@
 		currentIndex < al.length - 1
 			? al[currentIndex + 1]?.slug
 			: null;
+
+	onMount(() => {
+		const article = document.getElementById('article');
+		if (article) {
+			const headings = article.querySelectorAll('h2, h3, h4');
+			tableOfContents = Array.from(headings).map(heading => {
+				const id = heading.textContent?.toLowerCase().replace(/\s+/g, '-') || '';
+				heading.id = id;
+				return {
+					id,
+					text: heading.textContent || '',
+					level: parseInt(heading.tagName[1])
+				};
+			});
+		}
+	});
 </script>
 
 <svelte:head>
@@ -61,6 +79,24 @@
 </div>
 
 <div class="max-w-4xl mx-auto px-4">
+	{#if tableOfContents.length > 0}
+		<nav class="mb-8 p-4 bg-gray-50 rounded-lg">
+			<h2 class="text-lg font-bold mb-4">目次</h2>
+			<ul class="space-y-2">
+				{#each tableOfContents as item}
+					<li class="pl-{(item.level - 2) * 4}">
+						<a
+							href="#{item.id}"
+							class="text-blue-600 hover:text-blue-800 hover:underline"
+						>
+							{item.text}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</nav>
+	{/if}
+
 	<article id="article" class="prose prose-lg max-w-none leading-[3]">
 		{@html data.htmlContent}
 	</article>
