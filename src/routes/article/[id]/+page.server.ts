@@ -38,9 +38,15 @@ export const load = (async ({ params }) => {
             ? `../../../../src/contents/articles/${id}.svx`
             : `/src/contents/articles/${id}.svx`;
 
-        const module = await import(importPath /* @vite-ignore */);
+        const modules = import.meta.glob<{ metadata: ArticleMetadata; default: any }>('/src/contents/articles/*.svx', { eager: true });
+        const module = modules[importPath];
+
+        if (!module) {
+            throw error(404, 'Article not found');
+        }
+
         const metadata = module.metadata;
-        const Component: any = module.default;
+        const Component = module.default;
         const { body } = render(Component);
 
         const articles = get(getArticlePath);
