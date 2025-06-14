@@ -29,16 +29,18 @@ export const load = (async ({ params }) => {
             throw error(404, 'Article ID is required');
         }
 
-        const filePath = path.join(process.cwd(), 'src', 'contents', 'articles', `${id}.svx`);
+        const filePath = path.join(process.cwd(), 'contents', 'articles', `${id}.svx`);
         const slug = path.basename(filePath, '.svx');
 
         // 開発環境と本番環境で異なるパスを使用
         const isDev = process.env.NODE_ENV === 'development';
-        const importPath = isDev 
-            ? `../../../../src/contents/articles/${id}.svx`
-            : `/src/contents/articles/${id}.svx`;
+        // const importPath = isDev 
+        //     ? `/contents/articles/${id}.svx`
+        //     : `/contents/articles/${id}.svx`;
 
-        const modules = import.meta.glob<{ metadata: ArticleMetadata; default: any }>('/src/contents/articles/*.svx', { eager: true });
+        const importPath = `/contents/articles/${id}.svx`
+
+        const modules = import.meta.glob<{ metadata: ArticleMetadata; default: any }>('/contents/articles/*.svx', { eager: true });
         const module = modules[importPath];
 
         if (!module) {
