@@ -21,6 +21,9 @@ export default defineConfig({
 	server: {
 		fs: {
 			allow: ['..']
+		},
+		watch: {
+			ignored: []
 		}
 	},
 	envPrefix: ['VITE_', 'PUBLIC_']
