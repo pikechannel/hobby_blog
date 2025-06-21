@@ -1,48 +1,29 @@
 <script lang="ts">
-	import ArticlesPageTop from "$lib/components/articles/PageTop.svelte";
+	import PageWrapper from "$lib/components/PageWrapper.svelte";
 	import { PUBLIC_TITLE, PUBLIC_TWITTER_URL, PUBLIC_GITHUB_URL } from "$lib/constants";
 	import FontAwesome from "$lib/components/FontAwesome.svelte";
+	import ArticleLayout from "$lib/components/ArticleLayout.svelte";
 
 	export let data;
 </script>
 
-<div class="min-h-screen text-[#586e75]">
-	<div class="relative">
-		<div class="fixed inset-0 bg-[url('/img/alchemy-pattern.png')] opacity-5 bg-contain bg-center bg-no-repeat -z-10"></div>
-		<main class="container mx-auto px-4 py-12 relative">
-			<div class="max-w-4xl mx-auto">
-                
-				<article class="prose prose-lg max-w-none leading-relaxed bg-white/95 backdrop-blur-sm rounded-xl border-2 border-[#93a1a1] p-8 md:p-12 shadow-lg hover:shadow-xl transition-shadow duration-300">
-					<h1 class="text-4xl font-bold mb-12 text-[#268bd2] border-b-2 border-[#eee8d5] pb-4">{data.metadata.title}</h1>
-					<div class="flex flex-col md:flex-row gap-8 items-start mb-12">
-						<div class="w-48 h-48 rounded-full overflow-hidden border-4 border-[#93a1a1] shadow-lg hover:shadow-xl transition-shadow duration-300">
-							<picture>
-								<source srcset="/img/profile.webp" type="image/webp">
-								<img src="/img/profile.png" alt="プロフィール画像" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-							</picture>
-						</div>
-						<div class="flex-1">
-							{@html data.htmlContent}
-						</div>
-					</div>
-					<div class="mt-12 pt-8 border-t-2 border-[#eee8d5]">
-						<h2 class="text-2xl font-bold mb-6 text-[#268bd2]">SNS</h2>
-						<div class="flex gap-6">
-							<a href="{PUBLIC_TWITTER_URL}" class="text-gray-600 hover:text-blue-400 transition-colors duration-300 transform hover:scale-110">
-								<FontAwesome icon="x" size="2x" brand={true} />
-							</a>
-							<a href="{PUBLIC_GITHUB_URL}" class="text-gray-600 hover:text-indigo-500 transition-colors duration-300 transform hover:scale-110">
-								<FontAwesome icon="github" size="2x" brand={true} />
-							</a>
-						</div>
-					</div>
-				</article>
+<PageWrapper publicTitle={PUBLIC_TITLE}>
+	<div class="max-w-4xl mx-auto">
+		<ArticleLayout title={data.metadata.title ?? ''} htmlContent={data.htmlContent ?? ''}>
+			<div class="mt-12 pt-8 border-t-2 border-[#eee8d5]">
+				<h2 class="text-2xl font-bold mb-6 text-[#268bd2]">SNS</h2>
+				<div class="flex gap-6">
+					<a href="{PUBLIC_TWITTER_URL}" class="text-gray-600 hover:text-blue-400 transition-colors duration-300 transform hover:scale-110">
+						<FontAwesome icon="x" size="2x" brand={true} />
+					</a>
+					<a href="{PUBLIC_GITHUB_URL}" class="text-gray-600 hover:text-indigo-500 transition-colors duration-300 transform hover:scale-110">
+						<FontAwesome icon="github" size="2x" brand={true} />
+					</a>
+				</div>
 			</div>
-		</main>
+		</ArticleLayout>
 	</div>
-
-	<ArticlesPageTop title={PUBLIC_TITLE} />
-</div>
+</PageWrapper>
 
 <style>
     :global(.prose) {

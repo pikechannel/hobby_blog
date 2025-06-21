@@ -1,27 +1,16 @@
 <script lang="ts">
-	import ArticlesPageTop from "$lib/components/articles/PageTop.svelte";
+	import PageWrapper from "$lib/components/PageWrapper.svelte";
 	import { PUBLIC_TITLE } from "$lib/constants";
+	import ArticleLayout from "$lib/components/ArticleLayout.svelte";
 
 	export let data;
 </script>
 
-<div class="min-h-screen text-[#586e75]">
-	<div class="relative">
-		<div class="fixed inset-0 bg-[url('/img/alchemy-pattern.png')] opacity-5 bg-contain bg-center bg-no-repeat -z-10"></div>
-		<main class="container mx-auto px-4 py-12 relative">
-			<div class="max-w-4xl mx-auto">
-				<article class="prose prose-lg max-w-none leading-relaxed bg-white/95 backdrop-blur-sm rounded-xl border-2 border-[#93a1a1] p-8 md:p-12 shadow-lg hover:shadow-xl transition-shadow duration-300">
-					<h1 class="text-4xl font-bold mb-12 text-[#268bd2] border-b-2 border-[#eee8d5] pb-4">{data.metadata.title}</h1>
-					<div class="space-y-8">
-						{@html data.htmlContent}
-					</div>
-				</article>
-			</div>
-		</main>
+<PageWrapper publicTitle={PUBLIC_TITLE}>
+	<div class="max-w-4xl mx-auto">
+		<ArticleLayout title={data.metadata.title ?? ''} htmlContent={data.htmlContent ?? ''} />
 	</div>
-
-	<ArticlesPageTop title={PUBLIC_TITLE} />
-</div>
+</PageWrapper>
 
 <style>
     :global(.prose) {
