@@ -1,10 +1,6 @@
 <script>
     let menu = [
         {
-            name: "HOME",
-            href: "/",
-        },
-        {
             name: "プロフィール",
             href: "/profile",
         },

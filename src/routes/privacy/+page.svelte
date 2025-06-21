@@ -8,12 +8,6 @@
 <div class="min-h-screen text-[#586e75]">
 	<div class="relative">
 		<div class="fixed inset-0 bg-[url('/img/alchemy-pattern.png')] opacity-5 bg-contain bg-center bg-no-repeat -z-10"></div>
-		<div class="pt-8 pb-4 relative">
-			<picture>
-				<source srcset="/img/header_logo.webp" type="image/webp">
-				<img class="m-auto w-48 hover:scale-105 transition-transform duration-300" src="/img/header_logo.png" alt="">
-			</picture>
-		</div>
 		<main class="container mx-auto px-4 py-12 relative">
 			<div class="max-w-4xl mx-auto">
 				<article class="prose prose-lg max-w-none leading-relaxed bg-white/95 backdrop-blur-sm rounded-xl border-2 border-[#93a1a1] p-8 md:p-12 shadow-lg hover:shadow-xl transition-shadow duration-300">

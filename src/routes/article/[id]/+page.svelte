@@ -43,10 +43,9 @@
 	<div class="relative">
 		<div class="fixed inset-0 bg-[url('/img/alchemy-pattern.png')] opacity-5 bg-contain bg-center bg-no-repeat -z-10"></div>
 		<div class="pt-8 pb-4 relative">
-			<picture>
-				<source srcset="/img/header_logo.webp" type="image/webp">
-				<img class="m-auto w-48 hover:scale-105 transition-transform duration-300" src="/img/header_logo.png" alt="">
-			</picture>
+			<h1 class="text-3xl font-bold text-[#268bd2] mb-4 text-center transition-colors duration-200">
+				{data.metadata.title}
+			</h1>
 		</div>
 		<main class="container mx-auto px-4 py-12 relative">
 			<div class="max-w-7xl mx-auto">
@@ -106,12 +105,12 @@
 					{#if tableOfContents.length > 0}
 						<nav class="w-full lg:w-64 sticky top-8 h-fit p-6 bg-white/90 backdrop-blur-sm rounded-xl border-2 border-[#93a1a1] shadow-lg">
 							<h2 class="text-lg font-bold mb-4 text-[#268bd2]">目次</h2>
-							<ul class="space-y-2">
+							<ul class="space-y-2 max-h-96 overflow-y-auto pr-2 text-xs">
 								{#each tableOfContents as item}
 									<li class="pl-{(item.level - 2) * 4}">
 										<a
 											href="#{item.id}"
-											class="text-[#268bd2] hover:text-[#2aa198] hover:underline transition-colors duration-200 break-words"
+											class="text-[#268bd2] hover:text-[#2aa198] hover:underline transition-colors duration-200 break-words block py-1"
 										>
 											{item.text}
 										</a>
